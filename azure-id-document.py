@@ -20,11 +20,12 @@ document_analysis_client = DocumentAnalysisClient(endpoint, credential)
 
 # Function to extract details
 def extract_aadhar_details(file):
-    with open(file.name, "rb") as f:
+    
+    #with open(file.name, "rb") as f:
         #form = form_recognizer_client.begin_recognize_content(form=f)
         #result = form.result()
-        poller = document_analysis_client.begin_analyze_document(model_id, document=f)
-        result = poller.result()
+    poller = document_analysis_client.begin_analyze_document(model_id, document=file)
+    result = poller.result()
 
         #st.write(result)
     extracted_details = {}
@@ -60,7 +61,7 @@ def extract_aadhar_details(file):
 
 # Display extracted details
 if uploaded_file:
-    details = extract_aadhar_details(uploaded_file.name)
+    details = extract_aadhar_details(uploaded_file)
     st.subheader("Extracted Details:")
     st.text(r"Adhar Number: ****-****-"+f"{details.get('AdharNumber', 'N/A')[-4:]}")
     st.write(f"Name: {details.get('FirstName', 'N/A')} {details.get('LastName', 'N/A')}")
