@@ -60,7 +60,7 @@ def extract_aadhar_details(file):
 
 # Display extracted details
 if uploaded_file:
-    details = extract_aadhar_details(uploaded_file)
+    details = extract_aadhar_details(uploaded_file.name)
     st.subheader("Extracted Details:")
     st.text(r"Adhar Number: ****-****-"+f"{details.get('AdharNumber', 'N/A')[-4:]}")
     st.write(f"Name: {details.get('FirstName', 'N/A')} {details.get('LastName', 'N/A')}")
